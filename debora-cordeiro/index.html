@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Débora Cordeiro | Educação Ambiental que Transforma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --primary: #004080;
+      --secondary: #2E7D32;
+      --neutral-light: #f5f5f0;
+      --neutral-medium: #e8e8e0;
+      --neutral-dark: #33332d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      background-color: var(--neutral-light);
+      color: var(--neutral-dark);
+      transition: background 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+
+    header {
+      background: linear-gradient(rgba(128, 154, 226, 0.8), rgba(0, 64, 128, 0.8)),
+        url("img/bg/background-hero.webp") center/cover no-repeat fixed;
+      padding: 3rem 1rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    header p {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid white;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      transition: transform 0.5s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-out;
+    }
+
+    header img:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .nav-logo {
+      color: white;
+      font-weight: bold;
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: white;
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s ease;
+      position: relative;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+      width: 70%;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      padding: 1rem;
+    }
+
+    section {
+      padding: 4rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .alternate-bg {
+      background-color: var(--neutral-medium);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: var(--primary);
+      position: relative;
+      font-size: 2rem;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark-mode .card {
+      background: #1e1e1e;
+      border-color: #333;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      filter: sepia(15%) brightness(95%) contrast(110%);
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card h3 i {
+      color: var(--secondary);
+    }
+
+    .card p {
+      color: var(--neutral-dark);
+      margin-bottom: 1rem;
+    }
+
+    body.dark-mode .card p {
+      color: #e0e0e0;
+    }
+
+    .card .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .card .btn:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    body.dark-mode .testimonial {
+      background: #1e1e1e;
+    }
+
+    .testimonial::before {
+      content: '"';
+      font-size: 4rem;
+      position: absolute;
+      top: -1rem;
+      left: 0.5rem;
+      color: rgba(46, 125, 50, 0.1);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .testimonial-content {
+      margin-bottom: 1rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      font-weight: bold;
+      color: var(--secondary);
+      text-align: right;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    body.dark-mode .contact-card {
+      background: #1e1e1e;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact-card i {
+      font-size: 2rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .contact-card a:hover {
+      color: var(--secondary);
+    }
+
+    .eco-badge {
+      background: var(--secondary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem auto;
+      font-size: 0.9rem;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      background: var(--secondary);
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--secondary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes breathing {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .breathing-btn {
+      animation: breathing 3s ease-in-out infinite;
+    }
+
+    @media screen and (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--primary);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-logo {
+        display: block;
+      }
+
+      section {
+        padding: 2.5rem 1rem;
+      }
+
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media screen and (min-width: 769px) {
+      .nav-links {
+        display: flex !important;
+      }
+    }
+
+    <style>
+
+    /* DEBUG AVANÇADO - Mostra caminhos faltantes */
+    img {
+      border: 2px solid red;
+      min-height: 100px;
+      background-color: #f0f0f0;
+      position: relative;
+    }
+
+    img:after {
+      content: "URL: " attr(src);
+      display: block;
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      font-size: 10px;
+      color: red;
+      background: white;
+      padding: 2px;
+    }
+  </style>
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <img src="img/perfil/debora-profile.jpg" alt="Débora Cordeiro">
+      <h1>Débora Cordeiro</h1>
+      <p>Educação Ambiental que Transforma</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">Débora Cordeiro</div>
+      <div class="hamburger">
+        <i class="ti ti-menu-2"></i>
+      </div>
+      <div class="nav-links">
+        <a href="#projetos"><i class="ti ti-seeding"></i> Projetos</a>
+        <a href="#formacao"><i class="ti ti-school"></i> Formação</a>
+        <a href="#blog"><i class="ti ti-news"></i> Blog</a>
+        <a href="#depoimentos"><i class="ti ti-quote"></i> Depoimentos</a>
+        <a href="#contato"><i class="ti ti-mail"></i> Contato</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="projetos">
+    <h2><i class="ti ti-seeding"></i> Projetos</h2>
+    <p class="section-intro">Conheça nossas iniciativas que estão transformando a relação da sociedade com o meio
+      ambiente</p>
+
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="educacao">Educação</button>
+      <button class="filter-btn" data-filter="reflorestamento">Reflorestamento</button>
+      <button class="filter-btn" data-filter="conscientizacao">Conscientização</button>
+    </div>
+
+    <div class="card-container">
+      <div class="card" data-category="educacao">
+        <img src="img/projetos/projeto-ubuntu.jpg" alt="Ubuntu pela Terra" loading="lazy">
+        <div class="card-content">
+          <h3><i class="ti ti-school"></i> Ubuntu pela Terra</h3>
+          <p>Educação ambiental em escolas públicas com enfoque em comunidades tradicionais.</p>
+          <button class="btn">Saiba mais</button>
+        </div>
+      </div>
+      <div class="card" data-category="reflorestamento">
+        <img src="img/projetos/projeto-acorda.jpg" alt="Acorda para a vida" loading="lazy">
+        <div class="card-content">
+          <h3><i class="ti ti-trees"></i> Acorda para a vida</h3>
+          <p>Iniciativas de reflorestamento urbano e recuperação de áreas degradadas.</p>
+          <button class="btn">Saiba mais</button>
+        </div>
+      </div>
+      <div class="card" data-category="educacao conscientizacao">
+        <img src="img/projetos/projeto-cop30.jpg" alt="COP30 nas Escolas" loading="lazy">
+        <div class="card-content">
+          <h3><i class="ti ti-world"></i> COP30 nas Escolas</h3>
+          <p>Preparação para a Conferência do Clima em 2025 com jovens protagonistas.</p>
+          <button class="btn">Saiba mais</button>
+        </div>
+      </div>
+      <div class="card" data-category="conscientizacao">
+        <img src="img/projetos/projeto-dia-educacao.jpg" alt="Dia da Educação Ambiental" loading="lazy">
+        <div class="card-content">
+          <h3><i class="ti ti-calendar-event"></i> Dia da Educação Ambiental</h3>
+          <p>Campanhas de conscientização e mobilização em datas estratégicas.</p>
+          <button class="btn">Saiba mais</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formacao" class="alternate-bg">
+    <h2><i class="ti ti-certificate"></i> Formação</h2>
+    <p class="section-intro">Minha jornada acadêmica e profissional dedicada à sustentabilidade</p>
+
+    <div class="card">
+      <img src="img/projetos/treinamento.jpg" alt="Formação" loading="lazy">
+      <div class="card-content">
+        <h3><i class="ti ti-user-star"></i> Qualificações</h3>
+        <p>Graduada em Educação Ambiental pela Universidade Federal do Pará (UFPA), com especializações em:</p>
+        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+          <li>Liderança Sustentável (Instituto Terra)</li>
+          <li>Comunicação Ecológica (Escola Superior de Propaganda e Marketing)</li>
+          <li>Facilitação de Grupos (Instituto EcoSocial)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h2><i class="ti ti-news"></i> Blog</h2>
+    <p class="section-intro">Artigos e reflexões sobre educação ambiental e sustentabilidade</p>
+
+    <div class="card-container">
+      <div class="card">
+        <img src="img/blog/blog-educacao-ambiental.jpg" alt="Educação Ambiental nas Escolas" loading="lazy">
+        <div class="card-content">
+          <h3><i class="ti ti-book"></i> Educação Ambiental nas Escolas</h3>
+          <p>Como implementar projetos eficazes que transformam o olhar das crianças sobre o meio ambiente.</p>
+          <button class="btn">Ler artigo</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="img/blog/blog-bioeconomia.jpg" alt="Bioeconomia na Amazônia" loading="lazy">
+        <div class="card-content">
+          <h3><i class="ti ti-leaf"></i> Bioeconomia na Amazônia</h3>
+          <p>Estratégias para desenvolver a região sem comprometer seus ecossistemas.</p>
+          <button class="btn">Ler artigo</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="img/blog/blog-lideranca.jpg" alt="Liderança e Juventude" loading="lazy">
+        <div class="card-content">
+          <h3><i class="ti ti-users"></i> Liderança e Juventude</h3>
+          <p>O papel transformador das novas gerações nos movimentos ambientais.</p>
+          <button class="btn">Ler artigo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos" class="alternate-bg">
+    <h2><i class="ti ti-quote"></i> Depoimentos</h2>
+    <p class="section-intro">O que dizem aqueles que já participaram dos projetos</p>
+
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="testimonial-content">
+          "A abordagem da Débora transformou completamente nossa escola. Os alunos agora são multiplicadores do cuidado
+          ambiental em suas comunidades."
+        </div>
+        <div class="testimonial-author">- Maria Silva, Diretora Escolar</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-content">
+          "Participar do projeto de reflorestamento mudou minha vida. Hoje sou voluntário e ajudo a cuidar das áreas que
+          recuperamos."
+        </div>
+        <div class="testimonial-author">- João Santos, Voluntário</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-content">
+          "O trabalho da Débora mostra que é possível conciliar desenvolvimento e preservação. Sua metodologia deveria
+          ser levada para todo o país."
+        </div>
+        <div class="testimonial-author">- Dra. Ana Costa, Pesquisadora</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <h2><i class="ti ti-mail"></i> Entre em Contato</h2>
+    <p class="section-intro">Vamos conversar sobre educação ambiental e projetos sustentáveis</p>
+
+    <div class="contact-info">
+      <div class="contact-card">
+        <i class="ti ti-brand-instagram"></i>
+        <h3>Instagram</h3>
+        <a href="https://www.instagram.com/DEBORACORDEIRO_/#" target="_blank" class="breathing-btn">@DEBORACORDEIRO_</a>
+      </div>
+      <div class="contact-card">
+        <i class="ti ti-brand-linkedin"></i>
+        <h3>LinkedIn</h3>
+        <a href="https://br.linkedin.com/in/d%C3%A9bora-cordeiro-5ab2a915b" target="_blank">Débora Cordeiro</a>
+      </div>
+      <div class="contact-card">
+        <i class="ti ti-brand-whatsapp"></i>
+        <h3>WhatsApp</h3>
+        <a href="https://wa.me/5591993658311" target="_blank">(91) 99365-8311</a>
+      </div>
+    </div>
+
+    <div class="eco-badge">
+      <i class="ti ti-leaf"></i>
+      <span>Este site é eco-friendly</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Sobre</h3>
+        <p>Débora Cordeiro é educadora ambiental dedicada a transformar a relação entre sociedade e natureza através de
+          projetos inovadores.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links Rápidos</h3>
+        <ul style="list-style: none;">
+          <li><a href="#projetos" style="color: white; text-decoration: none;">Projetos</a></li>
+          <li><a href="#blog" style="color: white; text-decoration: none;">Blog</a></li>
+          <li><a href="#depoimentos" style="color: white; text-decoration: none;">Depoimentos</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Redes Sociais</h3>
+        <div class="social-links">
+          <a href="https://www.instagram.com/DEBORACORDEIRO_/#" target="_blank"><i
+              class="ti ti-brand-instagram"></i></a>
+          <a href="https://br.linkedin.com/in/d%C3%A9bora-cordeiro-5ab2a915b" target="_blank"><i
+              class="ti ti-brand-linkedin"></i></a>
+          <a href="https://wa.me/5591999999999" target="_blank"><i class="ti ti-brand-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Débora Cordeiro. Todos os direitos reservados.</p>
+      <p style="font-size: 0.8rem; margin-top: 0.5rem;">Site carbono neutro</p>
+    </div>
+  </footer>
+
+  <button class="theme-toggle" title="Alternar modo claro/escuro">
+    <i class="ti ti-sun"></i>
+  </button>
+
+  <script>
+    // Observador de interseção para animações
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Animar cards com delay
+          if (entry.target.querySelector('.card-container')) {
+            const cards = entry.target.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('visible');
+              }, 150 * index);
+            });
+          } else if (entry.target.querySelector('.card')) {
+            setTimeout(() => {
+              entry.target.querySelector('.card').classList.add('visible');
+            }, 300);
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Observar todas as seções
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Menu hamburguer para mobile
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Fechar menu ao clicar em um link (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    // Suavizar scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+
+        history.pushState(null, null, targetId);
+      });
+    });
+
+    // Filtro de projetos
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card[data-category]');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Atualizar botão ativo
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.getAttribute('data-filter');
+
+        // Filtrar cards
+        cards.forEach(card => {
+          const categories = card.getAttribute('data-category').split(' ');
+          if (filter === 'all' || categories.includes(filter)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Modo escuro/claro
+    const themeToggle = document.querySelector('.theme-toggle');
+    const sunIcon = '<i class="ti ti-sun"></i>';
+    const moonIcon = '<i class="ti ti-moon"></i>';
+
+    // Verificar preferência do usuário
+    if (localStorage.getItem('darkMode') === 'enabled' ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('darkMode'))) {
+      document.body.classList.add('dark-mode');
+      themeToggle.innerHTML = sunIcon;
+    } else {
+      themeToggle.innerHTML = moonIcon;
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+
+      if (document.body.classList.contains('dark-mode')) {
+        themeToggle.innerHTML = sunIcon;
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        themeToggle.innerHTML = moonIcon;
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+
+    // Lazy loading para imagens
+    if ('loading' in HTMLImageElement.prototype) {
+      const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      lazyImages.forEach(img => {
+        img.src = img.dataset.src;
+      });
+    } else {
+      // Fallback para browsers sem suporte a lazy loading nativo
+      const lazyLoadObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            lazyLoadObserver.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        lazyLoadObserver.observe(img);
+      });
+    }
+  </script>
+  <script src="js/scripts.js"></script>
+  <script>
+  </script>
+</body>
+
+</html>
